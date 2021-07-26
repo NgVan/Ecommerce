@@ -1,10 +1,30 @@
-# login
-Register with email or using third-party with Facebook, Google
+# Ecommerce
+Pharse 1: Build feature of Resgiter, sign_in with email, facebook, google
+-       Backend:
+-       
+- Create structure for project (include router, controller, model folder...)
+- Server-Side Validation
+- MongoDB/Mongoose
+- JSON Web Tokens
+- Passport and Strategies
+- Bcrypt hash password
+- Google OAuth
+- Facebook OAuth
+- 
+-       Frontend:
+-       
+- React Setup
+- React UI with Routing
+- Adding Redux and Redux Form
+- Action Creators, Actions and Reducers
+- Google & Facebook OAuth Integration
 
-Pharse 1_BE:
-  Create API for Signin, Signup, login with Facebook, Google and source secret
-  Use npm package:
-    - ...
-    
- Pharse 2_FE:
-  Create form login and...
+
+Pharse 2: Build feature of Product and category
+-       Backend:
+-       
+- Get Product, Category (Filter, sort, paginaton)
+- Create Product, Category
+- Update Product, Category
+- Delete Product, Category
+- Upload image to Cloudinary
