@@ -22,8 +22,8 @@ class SignUp extends Component {
         console.log('formData', formData)
         // we need to call some actioncreator
         await this.props.signUp(formData)
-        if(!this.props.errorMessage)
-            this.props.history.push('/dashboard')
+        // if(!this.props.errorMessage)
+        //     this.props.history.push('/dashboard')
     }
 
     async responseFacebook (response) {
@@ -69,6 +69,11 @@ class SignUp extends Component {
                         <div className = "alert alert-danger">
                             {this.props.errorMessage}
                         </div> : null}
+
+                        {this.props.successMessage? 
+                        <div className = "alert alert-success">
+                            {this.props.successMessage}
+                        </div> : null}
                         
                         <button type="submit" className = 'btn btn-primary'>Sign Up</button>
                     </form>
@@ -87,11 +92,14 @@ class SignUp extends Component {
                         />
                         <GoogleLogin
                             clientId="809857162407-ln9r35b6ak4q0o52kdav5458fvur0o4d.apps.googleusercontent.com"
+                            render={renderProps => (
+                                <button className="btn btn-outline-danger" onClick={renderProps.onClick} disabled={renderProps.disabled}>Google</button>
+                              )}
                             buttonText="Google"
                             icon="false"
                             onSuccess={this.responseGoogle}
                             onFailure={this.responseGoogle}
-                            className="btn btn-outline-danger"
+                            
                         />
                     </div>
                 </div>
@@ -102,8 +110,10 @@ class SignUp extends Component {
 }
 
 function mapStateToProps(state) {
+    console.log("state: ", state);
     return {
-        errorMessage: state.auth.errorMessage
+        errorMessage: state.auth.errorMessage,
+        successMessage: state.auth.successMessage
     }
 }
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link} from 'react-router-dom'
 import { connect } from 'react-redux'
+// import 'fa-icons';
 
 import * as actions from '../actions'
 
@@ -25,14 +26,17 @@ class Header extends Component {
             <ul className="navbar-nav ml-auto">
                 { !this.props.isAuth ? 
                     [<li className="nav-item" key="signup">
-                        <Link className="nav-link" to="/Signup">Signup</Link>
+                        <Link className="fas fa-user-plus nav-link" to="/Signup"> Sign Up</Link>
                     </li>,
                     <li className="nav-item" key="signin">
-                        <Link className="nav-link" to="/Signin">Signin</Link>
+                        <Link className="fas fa-user nav-link" to="/Signin"> Sign In</Link>
                     </li>] :null}
-                { this.props.isAuth ? 
+
+
+
+                { this.props.isAuth  ? 
                     <li className="nav-item">
-                        <Link className="nav-link" to="/Signout" onClick={this.signOut}>Signout</Link>
+                        <Link className="nav-link" to="/Signout" onClick={this.signOut}> Signout</Link>
                     </li> :null}
             </ul>
         </nav>
@@ -42,7 +46,7 @@ class Header extends Component {
 
 function mapStateToProps(state) {
     return {
-        isAuth: state.auth.isAuthenticated
+        isAuth: state.auth.isAuthenticated,
     }
 }
 

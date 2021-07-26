@@ -9,7 +9,7 @@ import axios from 'axios'
 import Header from "./component/Header"
 import Dashboard from "./component/Dashboard"
 import Error from "./component/ErrorPage"
-import Home from "./component/Home"
+import Home from "./component/Home/Home.js"
 import SignIn from "./component/SignIn"
 import SignUp from "./component/SignUp"
 //import SignOut from "./component/SignOut"

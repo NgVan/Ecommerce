@@ -1,5 +1,6 @@
 import axios from 'axios'
-import { 
+import {
+    AUTH_REGISTER, 
     AUTH_SIGN_UP, 
     AUTH_SIGN_OUT,
     AUTH_SIGN_IN, 
@@ -65,7 +66,7 @@ export const signUp = (data) => {
 
             console.log("[ActionCreator] signUp dispatch an action!")
             dispatch({
-                type:AUTH_SIGN_UP,
+                type:AUTH_REGISTER,
                 payload: res.data.token
             })
             //Test- can remove
@@ -133,6 +134,7 @@ export const signOut = () => {
         })
     }
 }
+
 
 export const getSecret = () => {
     return async (dispatch) => {

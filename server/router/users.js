@@ -3,7 +3,7 @@ const router = require('express-promise-router')();
 const passport = require('passport');
 
 const passportJwt = require('../middleware/passport')
-
+const auth = require('../middleware/auth')
 
 const userController = require('../controller/users');
 const {validateBody, schemas} = require('../helper/validateHelper')
@@ -22,5 +22,24 @@ router.route('/signin')
 
 router.route('/secret')
     .get(passport.authenticate('jwt', {session: false}), userController.secret);
+
+router.route('/activate/:tokenID')
+    .get(userController.confirmEmail);
+
+router.route('/forgotPassword')
+    .post(validateBody(schemas.forgotPasswordSchema), userController.forgotPassword);
+
+router.route('/resetPassword/:tokenID')
+    .patch(validateBody(schemas.resetPasswordSchema), userController.resetPassword);
+
+router.route('/infor')
+    .get(validateBody(schemas.findUserSchema), userController.getUserInfor);
+
+router.route('/all_infor')
+    .get(userController.getUserAllInfor);
+
+router.route('/addcart')
+    .patch(auth, userController.addCart);
+
 
 module.exports = router;

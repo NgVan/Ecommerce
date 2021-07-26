@@ -19,6 +19,7 @@ class Dashboard extends Component {
 }
 
 function mapStateToProps(state) {
+    console.log("state: ", state);
     return {
         secret: state.dash.secret
     }

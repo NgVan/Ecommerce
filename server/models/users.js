@@ -3,15 +3,13 @@ const bcrypt = require('bcryptjs');
 
 // Create a schema
 const UserSchema = new mongoose.Schema({
-    method: {
-        type: String,
-        enum : ['local', 'facebook', 'google'],
-        default: 'local'
+    methods: {
+        type: [String],
+        require: true
     },
     local: {
         email: {
             type: String,
-            
             lowercase: true
         },
         password: {
@@ -23,8 +21,7 @@ const UserSchema = new mongoose.Schema({
             type:String
         },
         email: {
-            type: String,
-            
+            type: String,  
             lowercase: true
         }    
     },
@@ -34,19 +31,38 @@ const UserSchema = new mongoose.Schema({
         },
         email: {
             type: String,
-            
             lowercase: true
         }    
+    },
+    isActivated: {
+        type: Boolean,
+        default: false
+    },
+    role: {
+        type: Number,
+        default: 0
+    },
+    cart: {
+        type: Array,
+        default: []
     }
+}, {
+    timestamps: true
 })
 
 UserSchema.pre('save', async function(next) {
     try {
         // check whether method isqual Local
-        if(!this.method.includes('local')) {
+        if(!this.methods.includes('local')) {
             next();
         }
-            
+        //the user schema is instantiated
+        const user = this;
+        //check if the user has been modified to know if the password has already been hashed
+        if (!user.isModified('local.password')) {
+        next();
+        }  
+        
         const salt = await bcrypt.genSalt(10);
         console.log("salt", salt)
         console.log("called123")
