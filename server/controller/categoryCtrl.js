@@ -1,4 +1,5 @@
 const Category = require('../models/categoryModel');
+const Product = require('../models/productModel');
 
 const categoryCtrl = {
     getCategory: async (req, res, next) => {
@@ -43,6 +44,8 @@ const categoryCtrl = {
             const foundCategory = await Category.findById(id);
             if (!foundCategory)
                 return res.status(400).json({msg: "This category is not exist."});
+            
+            const foundProduct = await Product.findOne({})
             await Category.findByIdAndDelete(id)
             return res.status(200).json({msg: "Deleted a category"})
         } catch (error) {
